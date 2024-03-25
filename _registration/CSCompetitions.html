@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CS Competitions</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="Devday.png" type="image/x-icon">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<div class="main" style="height: 42rem;">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<img src='Devday.png'
+				style="width:15rem; height: 11rem; margin-left: 4rem; margin-bottom: -4rem;">
+				<form action="submit" method="post" id="myForm">
+					<label for="chk" aria-hidden="true" style="margin-top: 4rem; margin-bottom: -0.1rem; text-align: center;">Registration Credentials</label>
+						<select name="comp" id="comp">
+							<option value="Speed Programming" data-min="1" data-max="3">Speed Programming</option>
+							<option value="Hacking Range" data-min="2" data-max="3">Hacking Range</option>
+							<option value="UI/UX Competition" data-min="1" data-max="2">UI/UX Competition</option>
+							<option value="Database Competition" data-min="2" data-max="2">Database Competition</option>
+							<option value="Data Science Competition" data-min="2" data-max="3">Data Science Competition</option>
+							<option value="Web Dev Competition" data-min="2" data-max="3">Web Development Competition</option>
+							<option value="Hackathon Competition" data-min="3" data-max="4">Hackathon Competition</option>
+							<option value="Debugging Competition" data-min="1" data-max="2">Debugging Competition</option>
+							<option value="Code in the Dark" data-min="1" data-max="3">Code in the Dark</option>
+							<option value="Game Dev Competition" data-min="2" data-max="3">Game Development Competition</option>
+							<option value="Code Combat" data-min="1" data-max="1">Code Combat</option>
+						</select>
+						<input style="width: 64%; margin-top: 2rem; font-size: 1rem;" id="parts" name="parts" placeholder="Enter number of participants" pattern="[0-9]" required>
+						<input style="width: 64%; margin-top: 2rem; font-size: 1rem;" id="tname" name="tname" placeholder="Team's Name" required>
+						<input style="width: 64%; margin-top: 2rem; font-size: 1rem;" id="ba" name="ba" placeholder="Brand Ambassador's ID (optional)">
+						<input style="display: none;" name="name" id="name" readOnly/>
+						<input style="display: none;" name="email" id="email" readOnly/>
+						<input style="display: none;" name="contact" id="contact" readOnly/>
+						<input style="display: none;" name="category" id="category" readOnly/>
+						<input style="display: none;" name="uni" id="uni" readOnly/>
+						<input style="display: none;" name="year" id="year" readOnly/>
+
+					  <script>
+					  $(document).ready(function() {
+        
+        const urlParams = new URLSearchParams(window.location.search);
+		
+		const name = urlParams.get('name');
+        const email = urlParams.get('email');
+        const contact = urlParams.get('contact');
+        const category = urlParams.get('category');
+        const uni = urlParams.get('uni');
+        const year = urlParams.get('year');
+        
+        $('#name').val(name);
+        $('#email').val(email);
+        $('#contact').val(contact);
+        $('#category').val(category);
+        $('#uni').val(uni);
+        $('#year').val(year);
+					      
+		});
+        
+						function checkParticipants(event) {
+						    
+						    
+				// 			event.preventDefault();
+						  const competition = document.getElementById("comp");
+						  const selectedOption = competition.options[competition.selectedIndex];
+						  const minParticipants = parseInt(selectedOption.dataset.min);
+						  const maxParticipants = parseInt(selectedOption.dataset.max);
+						  const years = document.getElementById("year").value;
+						  let valid = true;
+
+						  const numParticipants = parseInt(document.getElementById("parts").value);
+
+						  if (numParticipants < minParticipants)
+						  {
+						    alert(`The number of participants for this competition must be at least ${minParticipants}`);
+							document.getElementById("parts").value = ""; // clear the input field
+							valid = false;
+							event.preventDefault(); 
+						  }
+						  else if (numParticipants > maxParticipants)
+						  {
+						    alert(`The number of participants for this competition must be at most ${maxParticipants}`);
+							document.getElementById("parts").value = ""; // clear the input field
+							valid = false;
+							event.preventDefault(); 
+						  }
+						  else {
+                            // event.preventDefault();
+							if (competition.value === "Code Combat" && years < 4)
+							{
+							    alert(`Only Final Year students can register in this competition`);
+							    document.getElementById("parts").value = ""; // clear the input field
+    							valid = false;
+    							event.preventDefault(); 
+							}
+							else
+							{
+							 //   window.location.href = "";
+							}
+				// 			window.location.href = "";
+						
+							//event.currentTarget.submit();
+						  }
+						  
+// 						  if(competition.value === "Code Combat" && years < 4){
+// 							alert(`Only Final Year students can register in this competition`);
+// 							document.getElementById("parts").value = ""; // clear the input field
+// 							valid = false;
+// 							event.preventDefault();
+// //    						checkParticipants();
+// 						  } else {
+
+// 							window.location.href = ""
+						
+// 							//event.currentTarget.submit();
+// 						  }
+						
+						}
+						
+// 						const myForm = document.querySelector('#myForm');
+  
+//   myForm.addEventListener('submit', function(event) {
+//     event.preventDefault(); // prevent the form from submitting
+    
+//     // const inputValue = myInput.value;
+//     let url;
+    
+//     if (document.getElementById("uni").value === 'FAST NUCES') {
+//       url = 'http://fouzanasif.pythonanywhere.com/submit';
+//     } else {
+//       url = 'http://fouzanasif.pythonanywhere.com/hello'
+//     }
+    
+//     myForm.action = url; // set the form's action attribute
+    
+//     myForm.submit(); // submit the form
+//   });
+						
+						</script>
+
+
+					<button onclick="checkParticipants(event)" style="background-color: #0aa964; margin-top: 3rem;">REGISTER</button>
+				</form>
+
+
+			</div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>3rd Participant</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="Devday.png" type="image/x-icon">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body onload="change()">
+	<div class="main" style="height: 40rem;">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<img src='Devday.png'
+				style="width:15rem; height: 11rem; margin-left: 4rem; margin-bottom: -4rem;">
+				<form action="third" method="post" id="myForm">
+					<label for="chk" aria-hidden="true" style="margin-top: 4rem; margin-bottom: -0.1rem; text-align: center;">3rd Participant</label>
+						<select name="department" id="dept" style="width:69%; margin-top: 2rem;" onchange="change()">
+							<option value="BS CS">BS Computer Science</option>
+							<option value="BS SE">BS Software Engineering</option>
+							<option value="BS CYS">BS Cyber Security</option>
+							<option value="BS AI">BS Artificial Intelligence</option>
+							<option value="BS EE">BS Electrical Engineering</option>
+						</select>
+						<select name="year" placeholder="Select Year" style="width: 69%; margin-top: 2rem;" id="year" onchange="change()" required>
+    					    <option value="1">1st Year</option>
+    					    <option value="2">2nd Year</option>
+    					    <option value="3">3rd Year</option>
+    					    <option value="4">4th Year</option>
+							<option value="5">Others</option>
+					    </select>
+						<input style="width: 64%; margin-top: 2rem; font-size: 1rem;" id="id" name="id" placeholder="Enter NU-ID e.g. 19K-1345" pattern="[0-9]{2}[K,L,I,Q,P]-[0-9]{4}" title="Check format - Capital letter, hyphen, remove space (if any)">
+						<input style="width: 64%; margin-top: 2rem; font-size: 1rem;" id="section" name="section" placeholder="Enter section of participant e.g. C" pattern="[A-K]" title="E.g. A">
+						<!--<select name="course" id="courses" style="width:69%; margin-top: 2rem;">-->
+							<!--<option value="OOP">Object Oriented Programming</option>-->
+							<!--<option value="PF">Programming Fundamentals</option>-->
+						<!--</select>-->
+						<input style="display: none;" name="name" id="name" readOnly/>
+						<input style="display: none;" name="email" id="email" readOnly/>
+						<input style="display: none;" name="contact" id="contact" readOnly/>
+						<input style="display: none;" name="category" id="category" readOnly/>
+						<input style="display: none;" name="uni" id="uni" readOnly/>
+						<input style="display: none;" name="comp" id="comp" readOnly/>
+						<input style="display: none;" name="parts" id="parts" readOnly/>
+						<input style="display: none;" name="tname" id="tname" readOnly/>
+						<input style="display: none;" name="ba" id="ba" readOnly/>
+
+					  <script>
+					  $(document).ready(function() {
+        
+        const urlParams = new URLSearchParams(window.location.search);
+		
+		const name = urlParams.get('name');
+        const email = urlParams.get('email');
+        const contact = urlParams.get('contact');
+        const category = urlParams.get('category');
+        const uni = urlParams.get('uni');
+        const year = urlParams.get('year');
+        const comp = urlParams.get('comp');
+        const parts = urlParams.get('parts');
+        const tname = urlParams.get('tname');
+        const ba = urlParams.get('ba');
+        
+        $('#name').val(name);
+        $('#email').val(email);
+        $('#contact').val(contact);
+        $('#category').val(category);
+        $('#uni').val(uni);
+        $('#year').val(year);
+        $('#comp').val(comp);
+        $('#parts').val(parts);
+        $('#tname').val(tname);
+        $('#ba').val(ba);
+					  
+		});
+
+						</script>
+
+
+					<button onclick="checkParticipants(event)" style="background-color: #0aa964; margin-top: 3rem;">REGISTER</button>
+				</form>
+
+
+			</div>
+
+	</div>
+</body>
+</html>

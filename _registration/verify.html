@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Select Competition</title>
+	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
+	<link rel="stylesheet" href="_registration/style.css">
+	<link rel="icon" href="_registration/Devday.png" type="image/x-icon">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+</head>
+<body>
+	<div class="main" style="height: 30rem;">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<img src='_registration/Devday.png'
+				style="width:15rem; height: 11rem; margin-left: 4rem; margin-bottom: -4rem;">
+				<form method="post" id="myForm">
+					<label for="chk" aria-hidden="true" style="margin-top: 4rem; margin-bottom: -0.1rem; text-align: center;">Hexcode Verification</label>
+						<input name="hex" id="hex" placeholder="HEXCODE (e.g. ABCDE or 1A44E)" title="4 digit combination of uppercase letters and numbers" pattern="[A-Z0-9]{5}">
+						<!--<input name="mail" id="mail" ReadOnly>-->
+					<button id="myButton" style="background-color: #0aa964; margin-top: 3rem;">CONFIRM</button>
+					<script>
+					    document.getElementById('myForm').addEventListener('submit', function(event) {
+                        event.preventDefault(); // prevent form from submitting
+                        
+                        hex = document.getElementById('hex').value;
+                        const url = 'http://localhost:9922/verify';
+                        const data = {hex:hex};
+                        const options = {
+                          method: 'POST',
+                          headers: {
+                            //'Access-Control-Allow-Origin': 'http://devhire23.pythonanywhere.com',
+                            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                            'Access-Control-Allow-Headers': 'Content-Type',
+                            "Content-Type": "application/json"
+                          },
+                          body: JSON.stringify(data)
+                        };
+                        
+                        fetch(url, options)
+                          .then(response => response.json())
+                          .then(data => {
+                            document.getElementById('name').value = data.name;
+                            document.getElementById('participants').value = data.participants;
+                            document.getElementById('comp').value = data.comp;
+                            document.getElementById('email').value = data.email;
+                          })
+                          .catch(error => console.error(error));
+                    });
+					</script>
+				</form>
+
+
+			</div>
+
+	</div>
+	<div class="main" style="margin-left: 2em; height: 30rem;">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<img src='_registration/Devday.png'
+				style="width:15rem; height: 11rem; margin-left: 4rem; margin-bottom: -4rem;">
+				<form method="post" id="myForm">
+					    <br><br><br>
+						<input name="name" id="name" placeholder='NAME' style="width:80%;" ReadOnly>
+						<input name="email" id="email" placeholder='EMAIL' style="width:80%;" ReadOnly>
+						<input name="parts" id="participants" placeholder='PARTICIPANTS' style="width:80%;" ReadOnly>
+						<input name="comp" id="comp" placeholder='COMPETITIONS' style="width:80%;" ReadOnly>
+				</form>
+
+
+			</div>
+
+	</div>
+</body>
+</html>
+

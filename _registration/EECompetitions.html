@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EE Competitions</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="Devday.png" type="image/x-icon">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width-0.3, initial-scale=1, shrink-to-fit=yes">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<div class="main" style="height: 43rem;">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<img src='Devday.png'
+				style="width:15rem; height: 11rem; margin-left: 4rem; margin-bottom: -4rem;">
+				<form method="post" id="myForm" action='submit'>
+					<label for="chk" aria-hidden="true" style="margin-top: 4rem; margin-bottom: -0.1rem; text-align: center;">Registration Credentials</label>
+						<select name="comp" id="comp">
+							<option value="Circuit Soldering" data-min="2" data-max="3">Circuit Soldering</option>
+							<option value="Robo Race" data-min="2" data-max="5">Robo Race</option>
+							<option value="Robo Soccer" data-min="2" data-max="5">Robo Soccer</option>
+							<option value="Robo Combat Light" data-min="1" data-max="4">Robo Combat Light</option>
+							<option value="Robo Sumo" data-min="2" data-max="5">Robo Sumo</option>
+							<option value="AutoCAD" data-min="1" data-max="3">AutoCAD</option>
+						</select>
+						<input style="width: 64%; margin-top: 2rem; font-size: 1rem;" id="parts" name="parts" placeholder="Enter number of participants" pattern="[0-9]" required/>
+						<input style="width: 64%; margin-top: 2rem; font-size: 1rem;" id="tname" name="tname" placeholder="Team's Name" required/>
+						<input style="width: 64%; margin-top: 2rem; font-size: 1rem;" id="ba" name="ba" placeholder="Brand Ambassador's ID (optional)">
+						<input style="display: none;" name="name" id="name" readOnly/>
+						<input style="display: none;" name="email" id="email" readOnly/>
+						<input style="display: none;" name="contact" id="contact" readOnly/>
+						<input style="display: none;" name="category" id="category" readOnly/>
+						<input style="display: none;" name="uni" id="uni" readOnly/>
+						<input style="display: none;" name="year" id="year" readOnly/>
+
+					  <script>
+					  $(document).ready(function() {
+        
+							const urlParams = new URLSearchParams(window.location.search);
+							
+							const name = urlParams.get('name');
+							const email = urlParams.get('email');
+							const contact = urlParams.get('contact');
+							const category = urlParams.get('category');
+							const uni = urlParams.get('uni');
+							const year = urlParams.get('year');
+							
+							$('#name').val(name);
+							$('#email').val(email);
+							$('#contact').val(contact);
+							$('#category').val(category);
+							$('#uni').val(uni);
+							$('#year').val(year);
+											
+						});
+        
+						function checkParticipants(event) {
+							//event.preventDefault();
+						  const competition = document.getElementById("comp");
+						  const selectedOption = competition.options[competition.selectedIndex];
+						  const minParticipants = parseInt(selectedOption.dataset.min);
+						  const maxParticipants = parseInt(selectedOption.dataset.max);
+						  const years = document.getElementById("year").value;
+						  let valid = true;
+
+						  const numParticipants = parseInt(document.getElementById("parts").value);
+
+						  if (numParticipants < minParticipants)
+						  {
+						    alert(`The number of participants for this competition must be at least ${minParticipants}`);
+							document.getElementById("parts").value = ""; // clear the input field
+							valid = false;
+							event.preventDefault(); 
+						  }
+						  else if (numParticipants > maxParticipants)
+						  {
+						    alert(`The number of participants for this competition must be at most ${maxParticipants}`);
+							document.getElementById("parts").value = ""; // clear the input field
+							valid = false;
+							event.preventDefault(); 
+						  } else {
+
+				// 			window.location.href = ""
+						
+							//event.currentTarget.submit();
+						  }						
+						}
+						
+						  const myForm = document.querySelector('#myForm');						</script>
+					<button onclick="checkParticipants(event)" style="background-color: #0aa964; margin-top: 3rem;">REGISTER</button>
+				</form>
+			</div>
+	</div>
+</body>
+</html>
